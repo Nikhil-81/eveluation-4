@@ -12,10 +12,12 @@ let favouritedata=JSON.parse(localStorage.getItem("favourites"))  || [];
 
 displaymatchdata(matchdatacol)
 function displaymatchdata(matchdatacol){
+
+    let tbody =document.querySelector("tbody")
+    tbody.innerHTML=[]
     matchdatacol.forEach(function(el){
         console.log(el)
         // creating the elements;
-let tbody =document.querySelector("tbody")
 let tr=document.createElement("tr");
 let td1=document.createElement("td");
 let td2=document.createElement("td");
@@ -44,7 +46,7 @@ tbody.append(tr)
 
 // giving event listner to td6
 
-td6.addEventListener("click",function(){
+td6.addEventListener("click",function(el){
     addtofavi(el)
 })
 
@@ -55,5 +57,17 @@ function addtofavi(el){
     localStorage.setItem("favourites",JSON.stringify(favouritedata))
 }
 
-
 }
+
+
+
+
+    let x=document.querySelector("#filterVenue")
+    x.addEventListener("change",function(event){
+        let y=matchdatacol.filter(mf => mf.matchvenue == x.value)
+        
+        displaymatchdata(y)
+    })
+
+    
+    
